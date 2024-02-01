@@ -1,29 +1,22 @@
+"use client"
 
+import {useState} from 'react';
+
+import AdminPage from './AdminPage.js'
+import Login from './login.js';
 
 export default function Admin({}){
-    let logged = true;
+
+    const [logged, setLogged] = useState(false);
+
     if(logged){
         return (
             <AdminPage />
         )
     }
+
     return (
-        <Login />
+        <Login setLogged={setLogged}/>
     )
 }
 
-function AdminPage({}){
-    return (
-        <div>
-            Admin logged in
-        </div>
-    )
-}
-
-function Login({}){
-    return (
-        <div>
-            Please loggin
-        </div>
-    )
-}
