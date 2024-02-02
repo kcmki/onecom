@@ -1,22 +1,23 @@
-import { getHash } from 'next/dist/server/image-optimizer';
+
 import {useRef} from 'react';
 
+const { createHash } = require('crypto');
 
-
+function hash(string) {
+  return createHash('sha256').update(string).digest('hex');
+}
 
 export default function Login({setLogged}){
     
     const refEmail = useRef();
     const refPassword = useRef();
     
-
     let getLogin = async () => {
         // call api to login
         let email = refEmail.current.value;
 
-        let password = refPassword.current.value;
+        let password = hash(refPassword.current.value);
 
-        console.log(email, password)
         try{
             let response = await fetch('/api/login/', {
                 method: 'POST',

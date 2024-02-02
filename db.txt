@@ -1,0 +1,24 @@
+Users
+    userId
+    email
+    password
+
+Sessions
+    sessionId => hash of (userId + creationTime)
+    userId
+    expirationTime (creationTime + 1 hour)
+
+products
+    productId
+    name
+    description
+    price
+    quantity
+    images-blobs => [list of pics]
+
+orders
+    orderId
+    PhoneNumber
+    adress
+    clientName
+    products => (list of tuples (productId, quantity))
