@@ -16,20 +16,17 @@ export async function POST(req) {
 	let email = requestjson.email;
 	let password = requestjson.password;
 	var user = null;
-	try{
-		user = await db.collection('users').findOne({email:email,password:password});
-	}
-	catch (e) {
+
+	user = await db.collection('users').findOne({email:email,password:password});
+	
+	if (!user){
 		return NextResponse.json(
 			{ success: false , message: 'Invalid credentials'}
 		)
 	}
-
 	let userId = user.userId
-	console.log(userId)
-	console.log(user)
 	const sessionId = generateSessionId(email,Date.now())
-	let session = {sessionId:sessionId,userId:userId,expirationTime:Date.now()+process.env.SESSION_DURATION}
+	let session = {sessionId:sessionId,userId:userId,expirationTime:Number(Date.now())+Number(process.env.SESSION_DURATION)}
 	try{
 		await db.collection('sessions').insertOne(session);
 	}
@@ -40,7 +37,7 @@ export async function POST(req) {
 	}
 
     return NextResponse.json(
-    	{ success: true , sessionId:sessionId, userId:userId, expirationTime:session.expirationTime}
+    	{ success: true , sessionId:sessionId, userId:userId, email:email, userRole:user.userRole}
     )
 }
 

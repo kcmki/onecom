@@ -9,7 +9,7 @@ export async function GET(req) {
     return NextResponse.json(
       { success: false , message: 'use POST method to login'}
     )
-  }
+}
 
 export async function POST(req) {
     
@@ -23,20 +23,20 @@ export async function POST(req) {
             await db.collection('sessions').deleteOne({sessionId:reqSessionid})
         }catch(e){}
         return NextResponse.json(
-            {message:"Invalid session"}
+            {success:false,message:"Invalid session"}
         )
     }
     //check user
     let dataUser = await db.collection('users').findOne({_id:dataSession.userId});
     if (!dataUser){
         return NextResponse.json(
-            {message:"Invalid user"}
+            {success:false,message:"Invalid user"}
         )
     }
     //check perms
     if(dataUser.userRole != "admin"){
         return NextResponse.json(
-            {message:"You are not authorized to add users"}
+            {success:false,message:"You are not authorized to add users"}
         )
     }
         
@@ -54,10 +54,10 @@ export async function POST(req) {
     }
     catch (e) {
         return NextResponse.json(
-        {message:"Couldn't add user",error:e.message}
+        {success:false,message:"Couldn't add user",error:e.message}
         )
     }
     return NextResponse.json(
-        {message:"User added"}
+        {success:true,message:"User added"}
     )
 }
