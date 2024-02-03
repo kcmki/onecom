@@ -2,6 +2,7 @@ Users
     userId
     email
     password
+    role
 
 Sessions
     sessionId => hash of (userId + creationTime)
@@ -22,3 +23,6 @@ orders
     adress
     clientName
     products => (list of tuples (productId, quantity))
+    status
+    creationTime
+    createdBy
