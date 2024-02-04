@@ -2,13 +2,15 @@
 
 import {useEffect, useState} from 'react';
 import {Oval} from 'react-loader-spinner';
-import Login from './login.js';
+import Login from './componements/login.js';
+import { createContext,useContext } from 'react';
 
+
+export const LoggedContext = createContext(false);
 
 export default function AdminLayout({
     children,
   }) {
-
     const [logged, setLogged] = useState(false);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
@@ -61,12 +63,13 @@ export default function AdminLayout({
             </div>
         )
     }
-
     if(logged){
       return (
-        <section className="w-full h-full flex justify-center items-center ">
-          {children}
-        </section>
+        <LoggedContext.Provider value={setLogged}>
+            <section className="w-full h-full flex justify-center items-center ">
+            {children}
+            </section>
+        </LoggedContext.Provider>
         )
     }
 
