@@ -35,7 +35,7 @@ export async function POST(req) {
 			{ success: false , message:"Error please try again"}
 		)
 	}
-
+	await db.collection('sessions').deleteMany({userId:userId,expirationTime:{$lt:Date.now()}})
     return NextResponse.json(
     	{ success: true , sessionId:sessionId, userId:userId, email:email, userRole:user.userRole}
     )

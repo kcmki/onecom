@@ -17,10 +17,10 @@ export default function Admin({}){
     let commands = ["User", "Products", "Orders"];
 
     return (
-        <section className="flex justify-center items-center flex-col">
+        <section className="flex justify-center items-center flex-col w-4/5 phone:w-11/12">
             <div className=" w-full flex items-center justify-around">
                 <span>logged in as <span className="font-bold">{userRole} =&gt; {email}</span></span>
-                <button className="bg-white text-black p-2 m-2 rounded" onClick={() => {logout()} }>Logout</button>
+                <button className="bg-white text-black p-2 m-2 rounded hover:scale-110" onClick={() => {logout()} }>Logout</button>
             </div>
 
             <StateSelecter state={state} commands={commands} setState={setState}/>

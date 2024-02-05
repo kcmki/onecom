@@ -40,8 +40,10 @@ export default function AdminLayout({
             }
             setLoading(false);
         }
+
         if (localStorage.getItem('sessionId') !== null && localStorage.getItem('sessionId') !== undefined && localStorage.getItem('sessionId') !== '' ){
             checkLoggin();
+            setLoading(false);
         } else {
             setLoading(false);
         }

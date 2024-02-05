@@ -2,6 +2,12 @@
 import { NextResponse } from 'next/server'
 import db from '/lib/db'
 
+const { createHash } = require('crypto');
+
+function hash(string) {
+  return createHash('sha256').update(string).digest('hex');
+}
+
 // endpoint to fetch data
 export async function GET(req) {
     let token = req.headers.get('Authorization').split(" ")[1]
@@ -17,12 +23,12 @@ export async function GET(req) {
         let reqData = await req.json()
         let id = reqData.id
         
-        let data = await db.collection('products').findOne({productId:id})
+        let data = await db.collection('products').findOne({productId:id},{ _id: 0 })
         return NextResponse.json(
             {success:true,message:"",data:data}
         )
     }catch(e){
-        let data = await db.collection('products').find({}).toArray()
+        let data = await db.collection('products').find({},{ _id: 0 }).toArray()
         return NextResponse.json(
             {success:true,message:"",data:data}
         )
@@ -52,12 +58,12 @@ export async function POST(req) {
         )
     }
     //add data
-    let num = await db.collection('products').find({}).count()
-    data.productId = num
+ 
+    data.productId = hash(data.name)
     try{
         await db.collection('products').insertOne(data)
         return NextResponse.json(
-            {success:true,message:"Added data successfully"}
+            {success:true,id:data.productId,message:"Added data successfully"}
         )
     }catch(e){
         return NextResponse.json(
