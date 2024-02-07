@@ -53,19 +53,19 @@ export default function Login({setLogged}){
                 Enter your credentials
             </h1>
             
-            <form action={getLogin} className="flex flex-col justify-center items-center">
+            <form className="flex flex-col justify-center items-center">
 
                 <input ref={refEmail} className="text-black w-100 p-2 m-2 rounded" type="email" name="email" placeholder="Email" required />
                 <input ref={refPassword} className="text-black w-100 p-2 m-2 rounded" type="password" name="password" placeholder="Password" required />
-                <button type="submit" className='flex justify-center items-center rounded-xl w-40 p-2 m-2 bg-white text-black font-bold' > 
+                <button type="submit" className='flex justify-center items-center rounded-xl w-40 p-2 m-2 bg-white text-black font-bold' onClick={()=>{getLogin()}}> 
                     {
                         loading ?                     
                         <Oval
                         visible={true}
                         height="20"
                         width="20"
-                        color="#FFFFFF"
-                        secondaryColor="#FFFFFF"
+                        color="#000"
+                        secondaryColor="#000"
                         ariaLabel="oval-loading"
                         wrapperStyle={{}}
                         wrapperClass=""
