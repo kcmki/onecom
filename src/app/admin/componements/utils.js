@@ -1,8 +1,7 @@
 
 export const AuthUpdate = async (setLogged,setLoading) => {
     let token = localStorage.getItem('sessionId') || '';
-    console.log("Token =>"+token);
-    let response = await fetch('/api/isLogged/', {
+    let response = await fetch('/api/login/isLogged/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -11,11 +10,9 @@ export const AuthUpdate = async (setLogged,setLoading) => {
     });
     let data = await response.json();
     if(data.success){
-        console.log("Logged in as " + data.user.newSessionId)
         localStorage.setItem('sessionId',data.user.newSessionId)
     }else{
         localStorage.setItem('sessionId','')
-        console.log("Not logged in" + data.message)
         setLogged(false)
     }
     setLoading(false);

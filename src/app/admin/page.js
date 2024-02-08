@@ -1,26 +1,36 @@
 "use client"
 
-import {useEffect, useState} from 'react';
+import {useEffect, useState,useContext} from 'react';
 import User from './componements/User.js';
 import Products from './componements/Products.js';
 import Orders from './componements/Orders.js';
-
+import {Oval} from 'react-loader-spinner';
+import {LoggedContext} from './layout.js';
 
 export default function Admin({}){
-
-    let [state, setState] = useState("menu");
-
-    let sessionId = localStorage.getItem('sessionId');
-    let userId = localStorage.getItem('userId');
+    
+    const [state, setState] = useState("menu");
+    const [loggingOut, setLoggingOut] = useState(false);
     let email = localStorage.getItem('email');
-    let userRole = localStorage.getItem('userRole');
+    let name = localStorage.getItem('name');
     let commands = ["User", "Products", "Orders"];
-
+    const setLogged = useContext(LoggedContext);
     return (
         <section className="flex justify-center items-center flex-col w-4/5 phone:w-11/12">
             <div className=" w-full flex items-center justify-around">
-                <span>logged in as <span className="font-bold">{userRole} =&gt; {email}</span></span>
-                <button className="bg-white text-black p-2 m-2 rounded hover:scale-110" onClick={() => {logout()} }>Logout</button>
+                <span>logged in as <span className="font-bold">{name} =&gt; {email}</span></span>
+                <button className="bg-white text-black p-2 m-2 rounded hover:scale-110 w-32 flex justify-center items-center" onClick={() => {logout(setLoggingOut,setLogged)} }>
+                    {loggingOut ? <Oval
+                        visible={true}
+                        height="20"
+                        width="20"
+                        color="#000"
+                        secondaryColor="#000"
+                        ariaLabel="oval-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        />  : "Logout"}
+                    </button>
             </div>
 
             <StateSelecter state={state} commands={commands} setState={setState}/>
@@ -61,10 +71,10 @@ function Box({command,setState}){
     )
 }
 
-let logout = async () => {
-
+let logout = async (setLoggingOut,setLogged) => {
+    setLoggingOut(true);
+    
     let token = localStorage.getItem('sessionId') || '';
-    console.log("Token =>"+token);
     let response = await fetch('/api/logout/', {
         method: 'POST',
         headers: {
@@ -78,8 +88,9 @@ let logout = async () => {
         localStorage.setItem('userId','');
         localStorage.setItem('email','');
         localStorage.setItem('userRole','');
-        location.reload();
+        setLogged(false);
     }else{
         alert("Error logging out")
     }
+    setLoggingOut(false);
 }

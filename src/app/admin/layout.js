@@ -17,7 +17,7 @@ export default function AdminLayout({
         const checkLoggin = async () => {
             let token = localStorage.getItem('sessionId') || '';
             console.log("Token =>"+token);
-            let response = await fetch('/api/isLogged/', {
+            let response = await fetch('/api/login/isLogged/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -25,9 +25,7 @@ export default function AdminLayout({
                 }
             });
             let data = await response.json();
-            console.log(data);
             if(data.success){
-                console.log("Logged in as " + data.user.newSessionId)
                 localStorage.setItem('sessionId',data.user.newSessionId)
                 localStorage.setItem('userId',data.user.userId)
                 localStorage.setItem('email',data.user.email)
@@ -35,18 +33,14 @@ export default function AdminLayout({
                 setLogged(true)
             }else{
                 localStorage.setItem('sessionId','')
-                console.log("Not logged in" + data.message)
                 setLogged(false)
             }
             setLoading(false);
         }
-
-        if (localStorage.getItem('sessionId') !== null && localStorage.getItem('sessionId') !== undefined && localStorage.getItem('sessionId') !== '' ){
+        if ((localStorage.getItem('sessionId') !== null && localStorage.getItem('sessionId') !== undefined && localStorage.getItem('sessionId') !== '' ) ){
             checkLoggin();
-            setLoading(false);
-        } else {
-            setLoading(false);
         }
+        setLoading(false);
     },[]);
 
     if(loading){

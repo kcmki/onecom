@@ -50,7 +50,7 @@ export async function POST(req) {
         //return user data and new session
         dataUser = {
             newSessionId:newSessionId,
-            userId:dataUser.userId,
+            name:dataUser.name,
             email:dataUser.email,
             userRole:dataUser.userRole
         }

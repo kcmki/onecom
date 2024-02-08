@@ -33,7 +33,7 @@ export default function Login({setLogged}){
 
             if(data.success){
                 localStorage.setItem('sessionId',data.sessionId)
-                localStorage.setItem('userId',data.userId)
+                localStorage.setItem('name',data.name)
                 localStorage.setItem('email',data.email)
                 localStorage.setItem('userRole',data.userRole)
                 setLogged(true)
@@ -53,11 +53,11 @@ export default function Login({setLogged}){
                 Enter your credentials
             </h1>
             
-            <form className="flex flex-col justify-center items-center">
+            <div className="flex flex-col justify-center items-center">
 
                 <input ref={refEmail} className="text-black w-100 p-2 m-2 rounded" type="email" name="email" placeholder="Email" required />
                 <input ref={refPassword} className="text-black w-100 p-2 m-2 rounded" type="password" name="password" placeholder="Password" required />
-                <button type="submit" className='flex justify-center items-center rounded-xl w-40 p-2 m-2 bg-white text-black font-bold' onClick={()=>{getLogin()}}> 
+                <button className='flex justify-center items-center rounded-xl w-40 p-2 m-2 bg-white text-black font-bold' onClick={()=>{getLogin()}}> 
                     {
                         loading ?                     
                         <Oval
@@ -73,7 +73,7 @@ export default function Login({setLogged}){
                     }
                 </button>
 
-            </form>
+            </div>
         </div>
     )
 }

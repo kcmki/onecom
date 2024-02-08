@@ -37,7 +37,7 @@ export async function POST(req) {
 	}
 	await db.collection('sessions').deleteMany({userId:userId,expirationTime:{$lt:Date.now()}})
     return NextResponse.json(
-    	{ success: true , sessionId:sessionId, userId:userId, email:email, userRole:user.userRole}
+    	{ success: true , sessionId:sessionId, name:user.name, email:email, userRole:user.userRole}
     )
 }
 
@@ -47,6 +47,6 @@ function hash(string) {
   return createHash('sha256').update(string).digest('hex');
 }
 
-function generateSessionId(userId, timestamp) {
-  return hash(userId + timestamp)
+function generateSessionId(email, timestamp) {
+  return hash(email + timestamp)
 }
