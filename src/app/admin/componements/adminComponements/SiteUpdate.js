@@ -90,13 +90,14 @@ export default function SiteUpdate(){
         fetchData();
     },[]);
     if (dataLoading) return (
-        <div className={"p-2 m-2 w-full bg-white flex flex-col justify-center items-center text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+        <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition"+ (shown ?"":" h-12 ")} >
 
-            <h1 className="text-2xl text-center flex justify-around items-center h-8" onClick={()=>{setShown(!shown)}}> 
+            <h1 className="text-2xl text-center flex justify-around items-center h-8 w-full" onClick={()=>{setShown(!shown)}}> 
             { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
             <span className='hover:scale-110 select-none'>Update site</span> 
             { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />}
             </h1>
+            <div className="my-4">
             <Oval
             visible={true}
             height="100"
@@ -107,6 +108,7 @@ export default function SiteUpdate(){
             wrapperStyle={{}}
             wrapperClass=""
             />
+            </div>
         </div>
     )
     return (

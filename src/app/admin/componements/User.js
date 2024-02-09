@@ -6,6 +6,8 @@ import { Oval } from 'react-loader-spinner';
 import UserStats from "./userComponements/UserStats";
 import UpdateUser from "./userComponements/UserUpdate";
 import SiteUpdate from "./adminComponements/SiteUpdate";
+import AddUser from "./adminComponements/AddUser";
+
 
 export default function User({setState}){
 
@@ -57,9 +59,8 @@ function AdminPower(){
     return(
         <>
             <SiteUpdate />
-            <div className="p-2 m-2 w-full bg-white text-black rounded-xl">
-                <h1 className="text-2xl text-center">Add user</h1>
-            </div>
+            <AddUser />
+
             <div className="p-2 m-2 w-full bg-white text-black rounded-xl">
                 <h1 className="text-2xl text-center">Delete user (with password)</h1>
             </div>

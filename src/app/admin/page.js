@@ -13,7 +13,9 @@ export default function Admin({}){
     const [loggingOut, setLoggingOut] = useState(false);
     let email = localStorage.getItem('email');
     let name = localStorage.getItem('name');
-    let commands = ["User", "Products", "Orders"];
+    let role = localStorage.getItem('userRole');
+    let adminCommands = ["User", "Products", "Orders"];
+    let userCommands = ["User","Orders"];
     const setLogged = useContext(LoggedContext);
     return (
         <section className="flex justify-center items-center flex-col w-4/5 phone:w-11/12">
@@ -33,7 +35,7 @@ export default function Admin({}){
                     </button>
             </div>
 
-            <StateSelecter state={state} commands={commands} setState={setState}/>
+            <StateSelecter state={state} commands={role=="admin"?adminCommands:userCommands} setState={setState}/>
 
         </section>
     )
