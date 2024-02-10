@@ -2,7 +2,7 @@ import { MdOutlineKeyboardArrowDown ,MdOutlineKeyboardArrowUp,MdOutlineUploadFil
 import {useContext, useEffect, useState} from 'react';
 import {LoggedContext} from '../../layout.js';
 import { Oval } from 'react-loader-spinner';
-import {imageBase64} from '../utils.js';
+import {imageBase64} from '../../../../utils.js';
 
 export default function SiteUpdate(){
 

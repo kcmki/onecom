@@ -2,7 +2,7 @@
 import GoBack from "./goBack"
 import {useContext, useEffect, useState,useRef} from 'react';
 import {LoggedContext} from '../layout.js';
-import {AuthUpdate,imageBase64} from './utils.js';
+import {AuthUpdate,imageBase64} from '../../../utils.js';
 import { Oval } from 'react-loader-spinner';
 import { MdOutlineUploadFile } from "react-icons/md";
 import { Underdog } from "next/font/google";

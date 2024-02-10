@@ -1,7 +1,7 @@
 import GoBack from "./goBack"
 import {useContext, useEffect, useState} from 'react';
 import {LoggedContext} from '../layout.js';
-import {AuthUpdate} from './utils.js';
+import {AuthUpdate} from '../../../utils.js';
 import { Oval } from 'react-loader-spinner';
 
 export default function Orders({setState}){

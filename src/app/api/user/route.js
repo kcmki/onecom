@@ -2,7 +2,6 @@
 
 import { NextResponse } from 'next/server'
 import db from '/lib/db'
-import { group } from 'console';
 
 // endpoint to create a user using email, password and userRole (has to be admin and logged in)
 
