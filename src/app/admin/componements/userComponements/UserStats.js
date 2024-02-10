@@ -15,8 +15,12 @@ export default function UserStats(){
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
                 }});
+            if (res.status != 200){
+                setLoading(false)
+                return;
+            }
             let response = await res.json();
-
+            
             if (response.success) 
             {
                 setData(response.data);

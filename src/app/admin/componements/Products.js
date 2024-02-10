@@ -35,14 +35,14 @@ export default function Products({setState}){
                             />
                         </div>)
     return (
-        <div className="flex flex-wrap justify-center items-start">
+        <div className="flex flex-wrap justify-center items-start w-full">
             <GoBack setState={setState}/>
 
             <div className="flex flex-col w-1/2 small:w-full">
                 <AddProduct setProducts={setProducts} />
                 <UpdateProduct selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} products={products} setProducts={setProducts} />
             </div>
-            <div className="w-1/2 small:w-full">
+            <div className="w-1/2 small:w-full p-2 small:p-0">
                 <ListProducts products={products} setProducts={setProducts} setSelectedProduct={setSelectedProduct}/>
             </div>
             
@@ -101,12 +101,29 @@ function AddProduct({setProducts}){
     }
     return (
         <div className="flex flex-col justify-center items-center w-full my-2 p-2 bg-white rounded-xl">
+
             <h2 className="text-black p-2 font-bold text-xl">Add Product</h2>
 
-            <input ref={refName} className="bg-black rounded p-1 m-1" type="text" placeholder="name" />
-            <input ref={refPrice} className="bg-black rounded p-1 m-1" type="number" min={1} placeholder="price" />
-            <input ref={refQuantity} className="bg-black rounded p-1 m-1" type="number" min={1} placeholder="quantity" />
-            <input ref={refDescription} className="bg-black rounded p-1 m-1" type="text" placeholder="description"  />
+            <div className="flex small:flex-col justify-between items-center w-10/12"> 
+                <span className="text-black font-bold">Name</span> 
+                <input ref={refName} className="bg-black rounded p-1 m-1 w-8/12" type="text" placeholder="name" />
+            </div>
+
+            <div className="flex small:flex-col justify-between items-center w-10/12"> 
+                <span className="text-black font-bold">Price</span> 
+                <input ref={refPrice} className="bg-black rounded p-1 m-1 w-8/12" type="number" min={1} placeholder="price" />
+            </div>
+            <div className="flex small:flex-col justify-between items-center w-10/12"> 
+                <span className="text-black font-bold">Quantity</span> 
+                <input ref={refQuantity} className="bg-black rounded p-1 m-1 w-8/12" type="number" min={1} placeholder="quantity" />
+            </div>
+            <div className="flex small:flex-col justify-between items-center w-10/12"> 
+                <span className="text-black font-bold">Description</span> 
+                <input ref={refDescription} className="bg-black rounded p-1 m-1 w-8/12" type="text" placeholder="description"  />
+            </div>
+            
+            
+            
 
             <div className="flex flex-col justify-center items-center">
                 <label htmlFor="addProdImage" className="bg-white border-black border-2 text-white h-10 w-20 p-2 m-2 rounded flex justify-center items-center" >
@@ -345,19 +362,19 @@ function ListProducts({products, setProducts,setSelectedProduct}){
                         </div>)
 
     if (products === undefined) return (
-        <div className="flex flex-col justify-center items-center w-full m-2 small:w-full rounded-xl bg-white">
+        <div className="flex flex-col justify-center items-center w-full small:w-full rounded-xl bg-white">
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black p-2">Error loading products</span>
         </div>
     )
     if (products.length === 0) return (
-        <div className="flex flex-col justify-center items-center w-full m-2 small:w-full rounded-xl bg-white">
+        <div className="flex flex-col justify-center items-center w-full small:w-full rounded-xl bg-white">
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black p-2">No products</span>
         </div>
     )
     return (
-        <div className="flex flex-col justify-center items-center w-full rounded-xl bg-white px-2 m-2">
+        <div className="flex flex-col justify-center items-center w-full rounded-xl bg-white px-2">
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black">{message}</span>
             {

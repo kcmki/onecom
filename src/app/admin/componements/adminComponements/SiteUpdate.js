@@ -51,6 +51,11 @@ export default function SiteUpdate(){
                 },
                 body: JSON.stringify(UploadingData)
             });
+            if (response.status != 200){
+                setMessage('Error');
+                setUploading(false)
+                return;
+            }
             let data = await response.json();
             if(data.success){
                 setMessage(data.message);
@@ -72,6 +77,11 @@ export default function SiteUpdate(){
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + localStorage.getItem('sessionId')
                 }});
+            if (resp.status != 200){
+                setMessage('Error');
+                setDataLoading(false)
+                return;
+            }
             let data = await resp.json();
             try{
                 if ( !data.success && data.message === 'No data') throw new Error('No data found');
@@ -88,7 +98,7 @@ export default function SiteUpdate(){
             setDataLoading(false);
         }
         fetchData();
-    },[]);
+    },[shown]);
     if (dataLoading) return (
         <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition"+ (shown ?"":" h-12 ")} >
 

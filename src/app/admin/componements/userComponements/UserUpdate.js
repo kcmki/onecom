@@ -47,7 +47,11 @@ export default function UpdateUser(){
             },
             body: JSON.stringify(data)
         })
-
+        if (response.status != 200){
+            setMessage('Error');
+            setUpdating(false)
+            return;
+        }
         response = await response.json();
         if (response.success) {
             setMessage("User updated");

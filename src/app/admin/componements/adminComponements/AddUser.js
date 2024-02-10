@@ -40,6 +40,11 @@ export default function AddUser(){
             },
             body: JSON.stringify(data),
         })
+        if (response.status != 200){
+            setMessage('Error');
+            setAdding(false)
+            return;
+        }
         let res = await response.json();
         if (res.success){
             setMessage("User added");
