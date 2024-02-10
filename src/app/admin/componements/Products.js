@@ -193,7 +193,6 @@ function UpdateProduct({selectedProduct, setSelectedProduct, products, setProduc
     async function handleChooseUpImg(e){
         let file = e.target.files[0];
         const image = await imageBase64(file);
-        console.log("UPDATE");
         setUpImages((current) =>[...current, image]);
     }
 
@@ -208,8 +207,6 @@ function UpdateProduct({selectedProduct, setSelectedProduct, products, setProduc
             description: refDescription.current.value,
             images: upImages
         }
-        console.log(data);
-        console.log(products);
         let response = await fetch("/api/products/update", {
             method: "POST",
             headers: {

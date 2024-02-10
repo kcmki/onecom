@@ -4,10 +4,19 @@ import {LoggedContext} from '../layout.js';
 import {AuthUpdate} from '../../../utils.js';
 import { Oval } from 'react-loader-spinner';
 
+import OrdersList from './OrdersComponements/OrdersList.js';
+import TakeOrder from './OrdersComponements/TakeOrder.js';
+import AllOrders from "./OrdersComponements/AllOrders";
+import CurrentOrder from "./OrdersComponements/CurrentOrder";
+
+
 export default function Orders({setState}){
     
     const setLogged = useContext(LoggedContext);
     const [loading, setLoading] = useState(true);
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [currentOrder, setCurrentOrder] = useState(null);
+
     //check if logged in and update token
     useEffect(() => {
         if (localStorage.getItem('sessionId') !== null && localStorage.getItem('sessionId') !== undefined && localStorage.getItem('sessionId') !== '' ){
@@ -31,9 +40,12 @@ export default function Orders({setState}){
                         </div>)
     
     return (
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center w-full">
             <GoBack setState={setState}/>
-            ORDER PAGE
+            <OrdersList setSelectedOrder={setSelectedOrder}/>
+            <TakeOrder selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} setCurrentOrder={setCurrentOrder}/>
+            <CurrentOrder CurrentOrder={currentOrder}/>
+            <AllOrders />
         </div>
     )
 }

@@ -42,7 +42,6 @@ export default function SiteUpdate(){
             if (password === undefined || password === null || password == '') throw new Error('Password not valid');
             else password = hash(password);
             let UploadingData = {name:siteName,logo: logo, images: images, mainColor: mainColor, secondColor: secondColor,password, password}
-            console.log(UploadingData);
             let response = await fetch('/api/user/siteUpdate/', {
                 method: 'POST',
                 headers: {
@@ -91,7 +90,6 @@ export default function SiteUpdate(){
                 setUpImages(data.images);
                 setMainColor(data.mainColor);
                 setSecondColor(data.secondColor);
-                console.log("success");
             }catch(e){
                 setMessage(e.message);
             }
@@ -165,8 +163,8 @@ export default function SiteUpdate(){
                     {   (images === undefined) ? "No images" : 
                         images.map((image, index) => {
                             return (
-                            <div className="w-24 h-24 bg-red-600 rounded flex justify-center items-center m-1"> 
-                                <img key={index} src={image} alt="product" className="w-24 h-24 rounded rounded hover:w-20 hover:h-20" onClick={()=>{let im = images.filter((img)=>{if(img!=image) return img});setUpImages(im)}} />
+                            <div key={index} className="w-24 h-24 bg-red-600 rounded flex justify-center items-center m-1"> 
+                                <img  src={image} alt="product" className="w-24 h-24 rounded rounded hover:w-20 hover:h-20" onClick={()=>{let im = images.filter((img)=>{if(img!=image) return img});setUpImages(im)}} />
                             </div>
                             )
                         })

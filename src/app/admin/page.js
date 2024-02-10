@@ -49,8 +49,6 @@ function StateSelecter({state,commands,setState}){
             return <Products setState={setState}/>
         case "Orders":
             return <Orders setState={setState}/>
-        case "Admin":
-            return <Adminpage setState={setState}/>
         default:
             return <Menu commands={commands} setState={setState} />
     }

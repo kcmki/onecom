@@ -16,7 +16,6 @@ export default function AdminLayout({
     useEffect(() => {
         const checkLoggin = async () => {
             let token = localStorage.getItem('sessionId') || '';
-            console.log("Token =>"+token);
             let response = await fetch('/api/login/isLogged/', {
                 method: 'POST',
                 headers: {

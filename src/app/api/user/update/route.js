@@ -44,7 +44,6 @@ export async function POST(req){
     try{
         await db.collection('users').updateOne({userId:session.userId},{$set:user});
     }catch(e){
-        console.log(e);
         return NextResponse.json({ success: false, message: 'Error please try again' });
     }
     //generate new session
