@@ -4,11 +4,12 @@ import { Oval } from 'react-loader-spinner';
 import { MdOutlineKeyboardArrowDown ,MdOutlineKeyboardArrowUp} from "react-icons/md";
 
 
-export default function OrdersList({setSelectedOrder}){
+export default function AviableOrders({setSelectedOrder}){
     const [loading, setLoading] = useState(false);
     const [orders, setOrders] = useState([]);
     const [shown, setShown] = useState(false);
     const [message, setMessage] = useState("");
+    const isLogged = useContext(LoggedContext);  
     useEffect(() => {
         
         let getOrders = async () => {
@@ -27,6 +28,9 @@ export default function OrdersList({setSelectedOrder}){
             let data = await response.json();
             if (data.success === false){
                 setMessage('Error : '+data.message);
+                if (data.message === "Not authorized"){
+                    isLogged(false);
+                }
             }else{
                 setOrders(data.orders);
                 setMessage("");
@@ -71,16 +75,21 @@ export default function OrdersList({setSelectedOrder}){
                         <tr>
                             <th>Order id</th>
                             <th>Order date</th>
+                            <th>Total price  </th>
                             <th>Order status</th>
                             <th>User incharge</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         {orders.map((order,index) => {
+                            let date = new Date(order.date);
+                            date = date.toLocaleDateString();
                             return (
-                                <tr key={index} onClick={()=>{setSelectedOrder(order)}}>
+                                <tr key={index} className='border-y border-black' onClick={()=>{setSelectedOrder(order)}}>
                                     <td>{order._id}</td>
-                                    <td>{order.date}</td>
+                                    <td>{ date }</td>
+                                    <td>{order.totalPrice}</td>
                                     <td>{order.status}</td>
                                     <td>{order.user}</td>
                                 </tr>

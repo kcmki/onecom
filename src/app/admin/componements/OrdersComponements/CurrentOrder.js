@@ -4,9 +4,9 @@ import { Oval } from 'react-loader-spinner';
 import { MdOutlineKeyboardArrowDown ,MdOutlineKeyboardArrowUp} from "react-icons/md";
 
 
-export default function CurrentOrder({setSelectedOrder}){
+export default function CurrentOrder({currentOrder}){
     const [shown, setShown] = useState(false);
-    
+      
     return(
     <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
         <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 

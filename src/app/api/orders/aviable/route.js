@@ -15,14 +15,14 @@ export async function POST(req) {
     //check if session is valid
     if(!session || session.expirationTime < Date.now()){
         return NextResponse.json(
-            {success:false,message:"Not authorized"}
+            {success:false,message:"Not authorized "}
         )
     }
     //get user and check privileges
     let user = await db.collection('users').findOne({userId:session.userId})
     if(!user){
         return NextResponse.json(
-            {success:false,message:"Not authorized"}
+            {success:false,message:"Not authorized no user"}
         )
     }
     if(user.userRole !== 'admin'){
@@ -30,9 +30,10 @@ export async function POST(req) {
             {success:false,message:"Not authorized"}
         )
     }
-    //get orders
+    //get orders that aren't getting managed by any user
     let projection = {_id:0}
-    let orders = await db.collection('orders').find({},{projection}).toArray()
+    let orders = await db.collection('orders').find({userId:undefined},{projection}).toArray()
+
     return NextResponse.json(
         {success:true,message:"Got data",orders:orders}
     )

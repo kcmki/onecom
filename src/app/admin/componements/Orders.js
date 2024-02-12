@@ -4,7 +4,7 @@ import {LoggedContext} from '../layout.js';
 import {AuthUpdate} from '../../../utils.js';
 import { Oval } from 'react-loader-spinner';
 
-import OrdersList from './OrdersComponements/OrdersList.js';
+import AviableOrders from './OrdersComponements/AviableOrders.js';
 import TakeOrder from './OrdersComponements/TakeOrder.js';
 import AllOrders from "./OrdersComponements/AllOrders";
 import CurrentOrder from "./OrdersComponements/CurrentOrder";
@@ -42,9 +42,9 @@ export default function Orders({setState}){
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <GoBack setState={setState}/>
-            <OrdersList setSelectedOrder={setSelectedOrder}/>
+            <AviableOrders setSelectedOrder={setSelectedOrder}/>
             <TakeOrder selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} setCurrentOrder={setCurrentOrder}/>
-            <CurrentOrder CurrentOrder={currentOrder}/>
+            <CurrentOrder currentOrder={currentOrder}/>
             <AllOrders />
         </div>
     )
