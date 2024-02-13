@@ -7,7 +7,7 @@ import { Oval } from 'react-loader-spinner';
 import AviableOrders from './OrdersComponements/AviableOrders.js';
 import TakeOrder from './OrdersComponements/TakeOrder.js';
 import AllOrders from "./OrdersComponements/AllOrders";
-import CurrentOrder from "./OrdersComponements/CurrentOrder";
+import MyOrders from "./OrdersComponements/MyOrders";
 
 
 export default function Orders({setState}){
@@ -15,15 +15,19 @@ export default function Orders({setState}){
     const setLogged = useContext(LoggedContext);
     const [loading, setLoading] = useState(true);
     const [selectedOrder, setSelectedOrder] = useState(null);
-    const [currentOrder, setCurrentOrder] = useState(null);
+    const [currentOrders, setCurrentOrders] = useState([]);
+    const [aviableOrders, setAviableOrders] = useState([]);
 
+    let UserRole = localStorage.getItem('userRole');
     //check if logged in and update token
     useEffect(() => {
+        
         if (localStorage.getItem('sessionId') !== null && localStorage.getItem('sessionId') !== undefined && localStorage.getItem('sessionId') !== '' ){
             AuthUpdate(setLogged,setLoading);
         } else {
             setLoading(false);
         }
+
     },[]);
 
     if (loading) return (<div className='flex justify-center align-center '>
@@ -42,10 +46,13 @@ export default function Orders({setState}){
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <GoBack setState={setState}/>
-            <AviableOrders setSelectedOrder={setSelectedOrder}/>
-            <TakeOrder selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} setCurrentOrder={setCurrentOrder}/>
-            <CurrentOrder currentOrder={currentOrder}/>
-            <AllOrders />
+            <AviableOrders setSelectedOrder={setSelectedOrder} aviableOrders={aviableOrders} setAviableOrders={setAviableOrders}/>
+            <TakeOrder selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} setCurrentOrders={setCurrentOrders} setAviableOrders={setAviableOrders}/>
+            <MyOrders currentOrders={currentOrders}/>
+            {
+                (UserRole === "admin") ? <AllOrders /> : null
+            }
+
         </div>
     )
 }

@@ -26,6 +26,7 @@ export async function POST(req) {
 	}
 	let userId = user.userId
 	const sessionId = generateSessionId(email,Date.now())
+	
 	let session = {sessionId:sessionId,userId:userId,expirationTime:Number(Date.now())+Number(process.env.SESSION_DURATION)}
 	try{
 		await db.collection('sessions').insertOne(session);

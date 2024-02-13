@@ -4,9 +4,8 @@ import { Oval } from 'react-loader-spinner';
 import { MdOutlineKeyboardArrowDown ,MdOutlineKeyboardArrowUp} from "react-icons/md";
 
 
-export default function AviableOrders({setSelectedOrder}){
+export default function AviableOrders({setSelectedOrder,aviableOrders, setAviableOrders}){
     const [loading, setLoading] = useState(false);
-    const [orders, setOrders] = useState([]);
     const [shown, setShown] = useState(false);
     const [message, setMessage] = useState("");
     const isLogged = useContext(LoggedContext);  
@@ -32,7 +31,7 @@ export default function AviableOrders({setSelectedOrder}){
                     isLogged(false);
                 }
             }else{
-                setOrders(data.orders);
+                setAviableOrders(data.orders);
                 setMessage("");
             }
             setLoading(false)
@@ -45,7 +44,7 @@ export default function AviableOrders({setSelectedOrder}){
                         <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
                             <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
                                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
-                                <span className='hover:scale-110 select-none	'>Orders list</span> 
+                                <span className='hover:scale-110 select-none	'>Aviable orders list</span> 
                                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />}
                             </h1>
                             <div className='flex justify-center align-center m-4'>
@@ -70,28 +69,25 @@ export default function AviableOrders({setSelectedOrder}){
                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />}
             </h1>
             <div className="flex justify-center align-center m-4">
-                <table className="w-full rounded">
+                <table className="w-full rounded text-center">
                     <thead className='font-bold bg-black text-white'>
                         <tr>
                             <th>Order id</th>
                             <th>Order date</th>
                             <th>Total price  </th>
-                            <th>Order status</th>
-                            <th>User incharge</th>
-                            
+                            <th>Adress</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {orders.map((order,index) => {
+                        {aviableOrders.map((order,index) => {
                             let date = new Date(order.date);
                             date = date.toLocaleDateString();
                             return (
                                 <tr key={index} className='border-y border-black' onClick={()=>{setSelectedOrder(order)}}>
-                                    <td>{order._id}</td>
+                                    <td>{order.orderId}</td>
                                     <td>{ date }</td>
                                     <td>{order.totalPrice}</td>
-                                    <td>{order.status}</td>
-                                    <td>{order.user}</td>
+                                    <td>{order.adress}</td>
                                 </tr>
                             )
                         })}

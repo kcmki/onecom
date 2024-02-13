@@ -25,11 +25,6 @@ export async function POST(req) {
             {success:false,message:"Not authorized no user"}
         )
     }
-    if(user.userRole !== 'admin'){
-        return NextResponse.json(
-            {success:false,message:"Not authorized"}
-        )
-    }
     //get orders that aren't getting managed by any user
     let projection = {_id:0}
     let orders = await db.collection('orders').find({userId:undefined},{projection}).toArray()

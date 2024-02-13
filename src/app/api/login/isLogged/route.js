@@ -32,9 +32,11 @@ export async function POST(req) {
         }
 
         // create new session id 
+        
         let newSessionId = generateSessionId(dataUser.email,Date.now())
         let newSession = {sessionId:newSessionId,userId:dataUser.userId,expirationTime:Number(Date.now())+Number(process.env.SESSION_DURATION)}
         let created = false
+
         try{
             //insert new session
             await db.collection('sessions').insertOne(newSession)

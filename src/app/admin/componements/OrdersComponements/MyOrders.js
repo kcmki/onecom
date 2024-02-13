@@ -4,7 +4,7 @@ import { Oval } from 'react-loader-spinner';
 import { MdOutlineKeyboardArrowDown ,MdOutlineKeyboardArrowUp} from "react-icons/md";
 
 
-export default function CurrentOrder({currentOrder}){
+export default function MyOrders({currentOrders}){
     const [shown, setShown] = useState(false);
       
     return(
