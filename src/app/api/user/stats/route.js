@@ -32,17 +32,19 @@ export async function POST(req) {
         data["CM/M"] = [0,0]
         data["CA/M"] = [0,0]
         
-        data["CM/S"][1] = await db.collection('orders').find({date:{$gte:Date.now()-604800000}}).count();
-        data["CM/S"][0] = await db.collection('orders').find({userId:user.userId,date:{$gte:Date.now()-604800000}}).count();
+        data["CM/S"][1] = await db.collection('orders').find({status:"Delivered",userId: { $exists: true, $ne: undefined },date:{$gte:Date.now()-604800000}}).count();
+        data["CM/S"][0] = await db.collection('orders').find({status:"Delivered",userId:user.userId,date:{$gte:Date.now()-604800000}}).count();
         
 
-        data["CM/M"][1] = await db.collection('orders').find({date:{$gte:Date.now()-2592000000}}).count();
-        data["CM/M"][0] = await db.collection('orders').find({userId:user.userId,date:{$gte:Date.now()-2592000000}}).count();
+        data["CM/M"][1] = await db.collection('orders').find({status:"Delivered",userId: { $exists: true, $ne: undefined },date:{$gte:Date.now()-2592000000}}).count();
+        data["CM/M"][0] = await db.collection('orders').find({status:"Delivered",userId:user.userId,date:{$gte:Date.now()-2592000000}}).count();
     
         let groupResult = await db.collection('orders').aggregate([
                         {
                             $match: {
-                                date: { $gte: Date.now() - 2592000000 }
+                                status:"Delivered",
+                                date: { $gte: Date.now() - 2592000000 },
+                                userId: { $exists: true, $ne: undefined }
                             }
                         },
                         {
@@ -57,6 +59,7 @@ export async function POST(req) {
         groupResult = await db.collection('orders').aggregate([
                         {
                             $match: {
+                                status:"Delivered",
                                 date: { $gte: Date.now() - 2592000000 },
                                 userId: user.userId
                             }

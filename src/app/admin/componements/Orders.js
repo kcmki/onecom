@@ -5,19 +5,16 @@ import {AuthUpdate} from '../../../utils.js';
 import { Oval } from 'react-loader-spinner';
 
 import AviableOrders from './OrdersComponements/AviableOrders.js';
-import TakeOrder from './OrdersComponements/TakeOrder.js';
 import AllOrders from "./OrdersComponements/AllOrders";
-import MyOrders from "./OrdersComponements/MyOrders";
+import CurrentOrders from "./OrdersComponements/CurrentOrders";
 
 
 export default function Orders({setState}){
     
     const setLogged = useContext(LoggedContext);
     const [loading, setLoading] = useState(true);
-    const [selectedOrder, setSelectedOrder] = useState(null);
-    const [currentOrders, setCurrentOrders] = useState([]);
     const [aviableOrders, setAviableOrders] = useState([]);
-
+    const [currentOrders, setCurrentOrders] = useState([]);
     let UserRole = localStorage.getItem('userRole');
     //check if logged in and update token
     useEffect(() => {
@@ -46,9 +43,8 @@ export default function Orders({setState}){
     return (
         <div className="flex flex-col justify-center items-center w-full">
             <GoBack setState={setState}/>
-            <AviableOrders setSelectedOrder={setSelectedOrder} aviableOrders={aviableOrders} setAviableOrders={setAviableOrders}/>
-            <TakeOrder selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} setCurrentOrders={setCurrentOrders} setAviableOrders={setAviableOrders}/>
-            <MyOrders currentOrders={currentOrders}/>
+            <AviableOrders aviableOrders={aviableOrders} setAviableOrders={setAviableOrders} setCurrentOrders={setCurrentOrders}/>
+            <CurrentOrders currentOrders={currentOrders} setCurrentOrders={setCurrentOrders} setAviableOrders={setAviableOrders} />
             {
                 (UserRole === "admin") ? <AllOrders /> : null
             }

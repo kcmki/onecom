@@ -32,7 +32,7 @@ export default function TakeOrder({selectedOrder, setSelectedOrder,setCurrentOrd
                 setMessage('Order taken');
                 setAviableOrders((current)=>{return current.filter((order)=>{if (order.orderId !== selectedOrder.orderId) return order})});
                 setSelectedOrder(undefined);
-                
+                setCurrentOrders((current)=>[...current,selectedOrder]);
             }
         })
     }
@@ -63,7 +63,7 @@ export default function TakeOrder({selectedOrder, setSelectedOrder,setCurrentOrd
 }
 
 
-function Order({selectedOrder,setMessage}){
+export function Order({selectedOrder,setMessage}){
 
     const [loading, setLoading] = useState(true);
     
@@ -83,12 +83,13 @@ function Order({selectedOrder,setMessage}){
             });
             if (response.status != 200) {
                 setLoading(false)
-                setMessage('Error : '+response.message);
+                setData([]);
+                setMessage('Error loading : '+response.message);
             }
             let data = await response.json();
-            console.log(data)
             if (data.success === false){
                 setMessage('Error de chargement des produits : '+data.message);
+                setData([]);
                 if (data.message === "Not authorized"){
                     isLogged(false);
                 }
@@ -98,8 +99,9 @@ function Order({selectedOrder,setMessage}){
             }
             setLoading(false)
         }
-        getProducts();
-        },[]);
+        if(selectedOrder)
+            getProducts();
+        },[selectedOrder]);
 
     return(
     <div className="flex justify-center items-center w-full h-72 my-2 flex-warp">
@@ -110,7 +112,7 @@ function Order({selectedOrder,setMessage}){
             <span className="m-1 p-1"><span className="font-bold">Adress :</span> {selectedOrder.clientAdress}</span>
             <span className="m-1 p-1"><span className="font-bold">Wilaya :</span> {selectedOrder.clientWilaya}</span>
         </div>
-        <div className="m-1 p-1 rounded w-8/12 h-full overflow-y-auto overflow-x-hidden flex flex-col">
+        <div className="m-1 p-1 rounded w-8/12 h-full overflow-y-auto overflow-x-hidden flex flex-col items-center">
             <span className="font-bold m-1 p-1 w-full text-center flex justify-center items-center flex-col">Products info</span>
             {
                 (loading) ? <Oval

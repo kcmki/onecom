@@ -47,7 +47,6 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
 
     const startUploading = async ()=>{
         setLoading(true);
-        console.log(Qsizes)
         let data = {
             productId: selectedProduct.productId,
             name: refName.current.value,
