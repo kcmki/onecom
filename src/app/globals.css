@@ -4,8 +4,9 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 255, 255, 255;
   --background-end-rgb: 255, 255, 255;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -33,3 +34,64 @@ body {
 }
 
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: calc(90vh - 64px);
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1200px) {
+  .swiper-slide img {
+    height: calc(70vh - 64px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .swiper-slide img {
+    height: calc(50vh - 64px);
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.0);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#fff;
+  border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (prefers-color-scheme: light) {
+  ::-webkit-scrollbar-thumb {
+    background:#000;
+    border-radius: 4px;
+  }
+}

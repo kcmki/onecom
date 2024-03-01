@@ -58,8 +58,9 @@ export async function POST(req) {
         )
     }
     //add data
- 
     data.productId = hash(data.name)
+    data.date = Date.now()
+    data.visible = true
     try{
         await db.collection('products').insertOne(data)
         return NextResponse.json(

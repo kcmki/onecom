@@ -41,7 +41,7 @@ export async function POST(req) {
     }
     // updating query
     try{
-        await db.collection('products').updateOne({productId:productId},{$set:{name:data.name,price:data.price,Qsizes:data.Qsizes,description:data.description,images:data.images}})
+        await db.collection('products').updateOne({productId:productId},{$set:{name:data.name,price:data.price,Qsizes:data.Qsizes,description:data.description,images:data.images,visible:data.visible}})
         return NextResponse.json(
             {success:true,message:"Updated data successfully"}
         )

@@ -17,6 +17,7 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
     const refName = useRef();
     const refPrice = useRef();
     const refSize = useRef();
+    const refVisible = useRef();
     const refQuantity = useRef();
     const refDescription = useRef();
     const setLogged = useContext(LoggedContext);
@@ -26,6 +27,7 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             refName.current.value = selectedProduct.name;
             refPrice.current.value = selectedProduct.price;
             refDescription.current.value = selectedProduct.description;
+            refVisible.current.checked  = selectedProduct.visible;
             setQsizes(selectedProduct.Qsizes);
             setUpImages(selectedProduct.images);
         }
@@ -53,6 +55,7 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             price: refPrice.current.value,
             description: refDescription.current.value,
             images: upImages,
+            visible: Boolean(refVisible.current.checked ),
             Qsizes: Qsizes
         }
         let response = await fetch("/api/products/update", {
@@ -133,7 +136,10 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
                 <span className="text-black font-bold">Description</span> 
                 <input ref={refDescription} className="bg-black rounded p-1 m-1 w-8/12" type="text" placeholder="description"  />
             </div>
-
+            <div className="flex small:flex-col justify-between items-center w-10/12"> 
+                <span className="text-black font-bold">Visible</span> 
+                <input ref={refVisible} className="bg-black rounded p-1 m-1 w-8/12 h-6" type="checkbox" />
+            </div>
             <div className="flex small:flex-col justify-between small:justify-center flex-wrap items-center w-10/12">
                 <div className="flex small:flex-col justify-between items-center w-full "> 
                     <span className="text-black font-bold">Size Quantity</span>
