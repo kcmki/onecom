@@ -94,7 +94,7 @@ export default function AllOrders({setSelectedOrder}){
                                 let date = new Date(order.date);
                                 date = date.toLocaleDateString();
                                 return (
-                                    <tr key={index} className='border-y border-black' onClick={()=>{setSelectedOrder(order)}}>
+                                    <tr key={index} className='border-y border-black' >
                                         <td>Order {order.orderId}</td>
                                         <td>{ date }</td>
                                         <td>{order.totalPrice}</td>

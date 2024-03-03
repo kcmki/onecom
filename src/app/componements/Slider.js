@@ -18,7 +18,7 @@ export default function Slider({images,mainColor,secondColor}){
     
 
     return (
-      <Swiper autoplay={{delay:5000,pauseOnMouseEnter:true,}} navigation pagination={{clickable: true,}} loop={true} modules={[Navigation,Pagination,Autoplay]}>
+      <Swiper autoplay={{delay:3000,pauseOnMouseEnter:true,}} navigation pagination={{clickable: true,}} loop={true} modules={[Navigation,Pagination,Autoplay]}>
         {
           Images.map((image, index) => (
             <SwiperSlide key={index} >
