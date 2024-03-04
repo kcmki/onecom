@@ -3,10 +3,11 @@ import db from '/lib/db'
 import Header from '@/app/componements/Header'
 import MainPageProducts from '@/app/componements/MainPageProducts';
 import Link from 'next/link'
+import Footer from '../componements/Footer';
 
 export default async function page({params,searchParams}){
 
-    const itemsByPage = 2;
+    const itemsByPage = 5;
 
     
     // get search text
@@ -62,6 +63,7 @@ export default async function page({params,searchParams}){
                 <div className='mx-2 p-2 rounded-full w-24 text-center' style={{backgroundColor:mainColor,opacity:0.5}}>Suivant</div>
             }
         </div>
+        <Footer name={data.name} mainColor={mainColor} secondColor={secondColor} />
         </>
     );
 }

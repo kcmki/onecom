@@ -50,6 +50,18 @@ export async function POST(req) {
     
     try{
         await db.collection('orders').updateOne({orderId:data.orderId},{$set:{lock:true}})
+
+        if(order.status == "Canceled"){
+            // readd quantity if canceled and locked
+            order.products.map(async(prod) => {
+                let product = await db.collection('products').findOne({productId:prod[0]})
+                product.Qsizes.map(async(size) => {
+                    if(size.size === prod[1]){
+                        await db.collection('products').updateOne({productId:prod[0]},{$set:{Qsizes:{$set:{quantity:Number(quantity)+prod[2]}}}})
+                    }
+                })
+            })
+        }
         return NextResponse.json(
             {success:true,message:"updated status"}
         )

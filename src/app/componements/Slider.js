@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { root } from 'postcss';
+import "./slider.css"
 
 export default function Slider({images,mainColor,secondColor}){
 
@@ -18,10 +18,10 @@ export default function Slider({images,mainColor,secondColor}){
     
 
     return (
-      <Swiper autoplay={{delay:3000,pauseOnMouseEnter:true,}} navigation pagination={{clickable: true,}} loop={true} modules={[Navigation,Pagination,Autoplay]}>
+      <Swiper autoplay={{delay:3000,pauseOnMouseEnter:true,}} navigation pagination={{clickable: true,}} loop={true} modules={[Navigation,Pagination,Autoplay]} className='mainPswiper'>
         {
           Images.map((image, index) => (
-            <SwiperSlide key={index} >
+            <SwiperSlide key={index} className='mainPswiperSlide'>
               <img src={image} alt={`image-${index}`} />
             </SwiperSlide>
           ))

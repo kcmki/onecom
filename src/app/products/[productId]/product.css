@@ -1,0 +1,53 @@
+.mySlider {
+    width: 100%;
+    height: 420px;
+  }
+  
+  .mySliderSlide {
+    text-align: center;
+    font-size: 18px;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mySliderSlide img {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+@media screen and (min-width: 1200px){
+    .mySlider{
+        height: 620px;
+    }
+    .mySliderSlide img {
+        height: 600px;
+      }
+}
+
+.myController {
+width: 100%;
+height: 125px;
+}
+  .myControllerSlide {
+    text-align: center;
+    font-size: 18px;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+
+  }
+  
+  .myControllerSlide img {
+    display: block;
+    width: auto;
+    height: 100px;
+    object-fit: cover;
+  }
+  
