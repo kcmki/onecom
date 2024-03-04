@@ -2,7 +2,6 @@
 
 import { NextResponse } from 'next/server'
 import db from '/lib/db'
-import { execOnce } from 'next/dist/shared/lib/utils';
 
 // endpoint to list all users (has to be admin and logged in)
 export async function GET(req) {
