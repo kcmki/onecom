@@ -12,9 +12,9 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-    <body className={inter.className + " w-screen overflow-x-hidden"}>
-        	{children}
-    </body>
+      <body className={inter.className + " w-screen overflow-x-hidden"}>
+            {children}
+      </body>
     </html>
   );
 }

@@ -63,7 +63,17 @@ export default function FormCommande({product}) {
         "Naâma",
         "Aïn Témouchent",
         "Ghardaïa",
-        "Relizane"
+        "Relizane",
+        "Timimoun",
+        "Bordj Badji Mokhtar",
+        "Ouled Djellal",
+        "Béni Abbès",
+        "In Salah",
+        "In Guezzam",
+        "Touggourt",
+        "Djanet",
+        "El M'Ghair",
+        "El Menia"
     ];
     const addCommand = async () => {
         setLoading(true)
@@ -74,7 +84,7 @@ export default function FormCommande({product}) {
             clientAdresse: refAdresse.current.value,
             clientWilaya: refVille.current.value,
 
-            products: [[product.productId,refSize.current.value,refQuantite.current.value]]
+            products: [{productId:product.productId,size:refSize.current.value,quantity:Number(refQuantite.current.value)}]
         }
         if (data.clientName == ''  || data.clientPhone == '' || data.clientAdresse == '' || data.clientWilaya == '' || refSize.current.value == '') {
             setMessage('Veuillez remplir tout les champs')
@@ -99,6 +109,7 @@ export default function FormCommande({product}) {
             return
         }
         let response = await NextResponse.json()
+
         if (response.success) {
             setMessage('Commande ajouté avec success')
         }else{
@@ -106,7 +117,6 @@ export default function FormCommande({product}) {
         }
         setLoading(false)
     }
-
 
     const totalPrice = () => {
         let price = product.price

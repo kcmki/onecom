@@ -64,7 +64,7 @@ export default function AddProduct({setProducts}){
         if(s === "" || q === "") 
             {setMessage("Size and quantity required");
             return}
-        let elem = {size:s,quantity:q}
+        let elem = {size:s,quantity:Number(q)}
         setQsizes([...Qsizes,elem])
         setMessage("")
     }

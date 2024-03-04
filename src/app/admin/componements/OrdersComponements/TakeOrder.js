@@ -109,7 +109,7 @@ export function Order({selectedOrder,setMessage}){
             <span className="font-bold m-1 p-1 w-full text-center">Client info</span>
             <span className="m-1 p-1"> <span className="font-bold">Name :</span> {selectedOrder.clientName}</span>
             <span className="m-1 p-1"><span className="font-bold">Phone :</span> {selectedOrder.clientPhone}</span>
-            <span className="m-1 p-1"><span className="font-bold">Adress :</span> {selectedOrder.clientAdress}</span>
+            <span className="m-1 p-1"><span className="font-bold">Adress :</span> {selectedOrder.clientAdresse}</span>
             <span className="m-1 p-1"><span className="font-bold">Wilaya :</span> {selectedOrder.clientWilaya}</span>
         </div>
         <div className="m-1 p-1 rounded w-8/12 h-full overflow-y-auto overflow-x-hidden flex flex-col items-center">
