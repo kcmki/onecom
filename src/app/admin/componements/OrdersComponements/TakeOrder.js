@@ -38,18 +38,17 @@ export default function TakeOrder({selectedOrder, setSelectedOrder,setCurrentOrd
     }
 
     if(!selectedOrder) return(
-        <div className="flex flex-col justify-center items-center bg-white text-black rounded-xl m-2 p-2 w-full">
+        <div className="flex flex-col justify-center items-center bg-white text-black rounded-xl p-2 w-full border-2 border-black dark:border-[#e5e7eb]  ">
             <h1 className="text-xl font-bold">Select Order</h1>
             <p>No order selected</p>
         </div>)
 
     return(
-        <div className="flex flex-col justify-center items-center bg-white text-black rounded-xl m-2 p-2 w-full">
+        <div className="flex flex-col justify-center items-center bg-white text-black rounded-xl p-2 w-full border-2 border-black dark:border-[#e5e7eb]  ">
             <div className="flex flex-col justify-center items-center w-full">
                 <h1 className="text-xl font-bold">Select Order</h1>
                 <Order selectedOrder={selectedOrder} setMessage={setMessage}/>
             </div>
-
             <div className="m-1 p-1 w-full flex justify-center items-center">
                 <span className="font-bold m-1 p-1 w-full text-center">{message}</span>
             </div>

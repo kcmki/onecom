@@ -131,7 +131,7 @@ export default function FormCommande({product}) {
                     if (input[0] === 'Quantite') return (
                         <div className='grid grid-cols-4 small:grid-cols-1 w-full p-2' key={index}>
                             <label htmlFor={input[0]} className='font-bold flex small:justify-center items-center'>{input[0]}</label>
-                            <input id={input[0]} ref={input[1]} className='col-span-3 w-full p-2 border-2 rounded-xl border-black dark:border-[#e5e7eb]' type="number" min={1} max={5} onChange={totalPrice} placeholder={1} defaultValue={1} />
+                            <input id={input[0]} ref={input[1]} className='col-span-3 w-full p-2  rounded-xl border-2 border-black dark:border-[#e5e7eb]' type="number" min={1} max={5} onChange={totalPrice} placeholder={1} defaultValue={1} />
                         </div>
                     )
                     return (

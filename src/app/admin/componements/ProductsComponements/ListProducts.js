@@ -34,7 +34,7 @@ export default function ListProducts({products, setProducts,setSelectedProduct})
         fetchProducts();
     },[]);
 
-    if (loading) return (<div className='flex justify-center align-center w-full m-2 rounded-xl bg-white'>
+    if (loading) return (<div className='flex justify-center align-center w-full m-2 rounded-xl bg-white border-2 border-black dark:border-[#e5e7eb]'>
                             <Oval
                             visible={true}
                             height="100"
@@ -48,19 +48,19 @@ export default function ListProducts({products, setProducts,setSelectedProduct})
                         </div>)
 
     if (products === undefined) return (
-        <div className="flex flex-col justify-center items-center w-full small:w-full rounded-xl bg-white">
+        <div className="flex flex-col justify-center items-center w-full small:w-full rounded-xl bg-white border-2 border-black dark:border-[#e5e7eb]">
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black p-2">Error loading products</span>
         </div>
     )
     if (products.length === 0) return (
-        <div className="flex flex-col justify-center items-center w-full small:w-full rounded-xl bg-white">
+        <div className="flex flex-col justify-center items-center w-full small:w-full rounded-xl bg-white border-2 border-black dark:border-[#e5e7eb]">
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black p-2">No products</span>
         </div>
     )
     return (
-        <div className="flex flex-col justify-center items-center w-full rounded-xl bg-white px-2">
+        <div className="flex flex-col justify-center items-center w-full rounded-xl bg-white px-2 border-2 border-black dark:border-[#e5e7eb]">
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black">{message}</span>
             {

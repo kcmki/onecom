@@ -117,7 +117,7 @@ export default function CurrentOrders({currentOrders,setCurrentOrders,setAviable
         setMessage("")
     }
     if(currentOrders.length === 0) return(
-        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb]  "+ (shown ?"":" h-12 ")} >
             <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
                 <span className='hover:scale-110 select-none'>Current order</span> 
@@ -148,7 +148,7 @@ export default function CurrentOrders({currentOrders,setCurrentOrders,setAviable
         }
 
     return(
-    <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+    <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb]  "+ (shown ?"":" h-12 ")} >
         <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
             { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
             <span className='hover:scale-110 select-none'>Current orders</span> 
@@ -246,7 +246,7 @@ function LoadingButton({fonction,text,setMessage}){
         setLoading(false);
     }
     return(
-        <button className="m-1 p-1 px-2 w-40 h-10 font-bold bg-black text-white rounded flex justify-center items-center" onClick={()=>{Click()}}>
+        <button className="m-1 p-1 px-2 w-40 h-10 font-bold bg-black text-white rounded flex justify-center items-center border-2 border-black dark:border-[#e5e7eb]  " onClick={()=>{Click()}}>
             {loading ? <Oval visible={true} 
                             height="20" 
                             width="20" 

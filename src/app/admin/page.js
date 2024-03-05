@@ -21,7 +21,7 @@ export default function Admin({}){
         <section className="flex justify-center items-center flex-col w-4/5 phone:w-11/12">
             <div className=" w-full flex items-center justify-around">
                 <span>logged in as <span className="font-bold">{name} =&gt; {email}</span></span>
-                <button className="bg-white text-black p-2 m-2 rounded hover:scale-110 w-32 flex justify-center items-center" onClick={() => {logout(setLoggingOut,setLogged)} }>
+                <button className="bg-white text-black p-2 m-2 rounded hover:scale-110 w-32 flex justify-center items-center border-2 border-black dark:border-[#e5e7eb]" onClick={() => {logout(setLoggingOut,setLogged)} }>
                     {loggingOut ? <Oval
                         visible={true}
                         height="20"
@@ -57,7 +57,7 @@ function StateSelecter({state,commands,setState}){
 function Menu ({commands,setState}) {
 
     return (
-        <section className="flex flex-wrap justify-center items-center text-black">
+        <section className="flex flex-wrap justify-center items-center text-black ">
             {commands.map((command, index) => {
                 return <Box key={index} command={command} setState={setState}/>
             })}
@@ -67,7 +67,7 @@ function Menu ({commands,setState}) {
 
 function Box({command,setState}){
     return (
-        <button className="Box w-40 h-40 phone:w-full rounded m-2 p-2 bg-white flex justify-center items-center" onClick={()=>{setState(command)}}>{command}</button>
+        <button className="Box w-40 h-40 phone:w-full rounded-xl m-2 p-2 bg-white flex justify-center items-center border-2 border-black dark:border-[#e5e7eb]" onClick={()=>{setState(command)}}>{command}</button>
     )
 }
 

@@ -66,7 +66,7 @@ export default function UpdateUser(){
     }
 
     return (
-        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+        <div className={" border-2 border-black dark:border-[#e5e7eb] p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
             <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
                 <span className='hover:scale-110 select-none	'>Update user</span> 

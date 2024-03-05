@@ -71,7 +71,7 @@ export default function ListUsers({setState}){
     }
 
     if (dataLoading) return (
-        <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition"+ (shown ?"":" h-12 ")} >
+        <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb] "+ (shown ?"":" h-12 ")} >
 
             <h1 className="text-2xl text-center flex justify-around items-center h-8 w-full" onClick={()=>{setShown(!shown)}}> 
             { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
@@ -93,7 +93,7 @@ export default function ListUsers({setState}){
         </div>
     )
     if( users.length === 0) return (
-     <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition"+ (shown ?"":" h-12 ")} >
+     <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb] "+ (shown ?"":" h-12 ")} >
 
         <h1 className="text-2xl text-center flex justify-around items-center h-8 w-full" onClick={()=>{setShown(!shown)}}> 
         { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
@@ -108,9 +108,8 @@ export default function ListUsers({setState}){
         </div>
     </div>
     )
-
     return (
-        <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition"+ (shown ?"":" h-12 ")} >
+        <div className={"p-2 m-2 w-full bg-white flex flex-col justify-start items-center text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb] "+ (shown ?"":" h-12 ")} >
 
             <h1 className="text-2xl text-center flex justify-around items-center h-8 w-full" onClick={()=>{setShown(!shown)}}> 
             { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 

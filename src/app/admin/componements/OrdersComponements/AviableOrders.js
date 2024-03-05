@@ -43,7 +43,7 @@ export default function AviableOrders({aviableOrders, setAviableOrders,setCurren
 
     
     if (loading) return (
-                        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+                        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb]  "+ (shown ?"":" h-12 ")} >
                             <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
                                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
                                 <span className='hover:scale-110 select-none	'>Aviable orders list</span> 
@@ -64,7 +64,7 @@ export default function AviableOrders({aviableOrders, setAviableOrders,setCurren
                         </div>
                         )
     if(aviableOrders.length == 0) return (
-            <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+            <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb]  "+ (shown ?"":" h-12 ")} >
                 <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
                     { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
                     <span className='hover:scale-110 select-none	'>Aviable orders list</span> 
@@ -76,7 +76,7 @@ export default function AviableOrders({aviableOrders, setAviableOrders,setCurren
             </div>
         )
     return(
-        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition border-2 border-black dark:border-[#e5e7eb]  "+ (shown ?"":" h-12 ")} >
             <h1 className="text-2xl text-center flex justify-around items-center" onClick={()=>{setShown(!shown)}}> 
                 { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 
                 <span className='hover:scale-110 select-none	'>Aviable orders list</span> 

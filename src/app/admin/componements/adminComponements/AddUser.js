@@ -54,7 +54,7 @@ export default function AddUser(){
         setAdding(false);
     }
     return(
-        <div className={"p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
+        <div className={"border-2 border-black dark:border-[#e5e7eb] p-2 m-2 w-full bg-white text-black rounded-xl overflow-hidden duration-500 transition "+ (shown ?"":" h-12 ")} >
 
             <h1 className="text-2xl text-center flex justify-around items-center h-8" onClick={()=>{setShown(!shown)}}> 
             { shown? <MdOutlineKeyboardArrowUp />: <MdOutlineKeyboardArrowDown />} 

@@ -47,9 +47,9 @@ export default function UserStats(){
                             wrapperClass=""
                             />
                         </div>)
-    if (!loading && data ==undefined) return (<div className="p-2 m-2 w-full bg-white text-black rounded-xl text-center">No data</div>)
+    if (!loading && data ==undefined) return (<div className="p-2 m-2 w-full bg-white text-black rounded-xl text-center border-2 border-black dark:border-[#e5e7eb]">No data</div>)
     return(
-    <div className="p-2 m-2 w-full bg-white text-black rounded-xl flex flex-col justify-start align-center">
+    <div className="p-2 m-2 w-full bg-white text-black rounded-xl flex flex-col justify-start align-center border-2 border-black dark:border-[#e5e7eb]">
         <div className="grid grid-cols-2 small:grid-cols-1" >
             <div className=""> 
                 <div>user name : <span className="username">{data["nom"]}</span></div>
@@ -66,19 +66,19 @@ export default function UserStats(){
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="border-2 border-black">CA/mois</td>
-                        <td className="border border-black">{data["CA/M"][0]}</td>
-                        <td className="border border-black">{data["CA/M"][1]}</td>
+                        <td className="border-2 border-black text-center">CA/mois</td>
+                        <td className="border border-black text-center">{data["CA/M"][0]}</td>
+                        <td className="border border-black text-center">{data["CA/M"][1]}</td>
                     </tr>
                     <tr>
-                        <td className="border-2 border-black">Commande/semaine</td>
-                        <td className="border border-black">{data["CM/S"][0]}</td>
-                        <td className="border border-black">{data["CM/S"][1]}</td>
+                        <td className="border-2 border-black text-center">Commande/semaine</td>
+                        <td className="border border-black text-center">{data["CM/S"][0]}</td>
+                        <td className="border border-black text-center">{data["CM/S"][1]}</td>
                     </tr>
                     <tr>
-                        <td className="border-2 border-black">Commande/mois</td>
-                        <td className="border border-black">{data["CM/M"][0]}</td>
-                        <td className="border border-black">{data["CM/M"][1]}</td>
+                        <td className="border-2 border-black text-center">Commande/mois</td>
+                        <td className="border border-black text-center">{data["CM/M"][0]}</td>
+                        <td className="border border-black text-center">{data["CM/M"][1]}</td>
                     </tr>
                 </tbody>
             </table>
