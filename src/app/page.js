@@ -16,7 +16,6 @@ export default async function Home() {
   let images = data.images;
   return (
     <main className="flex flex-col items-center justify-between">
-
         <Header logo={logo} mainColor={mainColor} secondColor={secondColor} name={name} />
         <div className='medium:w-full w-3/4'>
           <Slider images={images} mainColor={mainColor} secondColor={secondColor}/>
