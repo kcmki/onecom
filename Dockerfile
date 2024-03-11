@@ -15,6 +15,5 @@ ENV MONGODB_URI "mongodb://mongo:27017/"
 
 ENV SESSION_DURATION 6000000
 
-ENV DBNAME "KCMKI"
 
 CMD [ "npm", "run","dev" ]
