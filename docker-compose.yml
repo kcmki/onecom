@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: web
+    container_name: nextjs
     restart: always
     volumes:
       - ./:/usr/src/app
@@ -16,7 +16,12 @@ services:
   mongo:
     container_name: mongo
     image: mongo
-    restart: always
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: KCMKI
+
     volumes:
       - ./data:/data/db
     ports:

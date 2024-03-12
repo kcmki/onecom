@@ -52,15 +52,15 @@ export default async function page({params,searchParams}){
         <div className='w-full h-20 flex justify-center items-center'>
             {
                page > 1 ?  
-               <Link href={`/products?page=${page-1}`} className='mx-2 p-2 rounded-full w-24 text-center hover:scale-110' style={{backgroundColor:mainColor}}>Précédent</Link>
+               <Link href={`/products?page=${page-1}`} className='mx-2 p-2 rounded-full w-24 text-center text-black dark:text-white	dark:border-white border-black border-2 hover:scale-110' style={{backgroundColor:mainColor}}>Précédent</Link>
                :
-                <div className='mx-2 p-2 rounded-full w-24 text-center' style={{backgroundColor:mainColor,opacity:0.5}}>Précédent</div>
+                <div className='mx-2 p-2 rounded-full w-24 text-center text-black dark:text-white	dark:border-white border-black border-2' style={{backgroundColor:mainColor,opacity:0.5}}>Précédent</div>
             }
             {
                 products.length === itemsByPage ? 
-                <Link href={`/products?page=${page+1}`} className='mx-2 p-2 rounded-full w-24 text-center hover:scale-110' style={{backgroundColor:mainColor}}>Suivant</Link> 
+                <Link href={`/products?page=${page+1}`} className='mx-2 p-2 rounded-full w-24 text-center hover:scale-110 text-black dark:text-white	dark:border-white border-black border-2' style={{backgroundColor:mainColor}}>Suivant</Link> 
                 : 
-                <div className='mx-2 p-2 rounded-full w-24 text-center' style={{backgroundColor:mainColor,opacity:0.5}}>Suivant</div>
+                <div className='mx-2 p-2 rounded-full w-24 text-center text-black dark:text-white	dark:border-white border-black border-2' style={{backgroundColor:mainColor,opacity:0.5}}>Suivant</div>
             }
         </div>
         <Footer name={data.name} mainColor={mainColor} secondColor={secondColor} />

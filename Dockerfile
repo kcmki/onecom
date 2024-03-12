@@ -11,9 +11,6 @@ RUN npm install
 # Bundle app source
 COPY . /usr/src/app
 
-ENV MONGODB_URI "mongodb://mongo:27017/"
-
-ENV SESSION_DURATION 6000000
-
+ENV MONGODB_URI "mongodb://owner:owner127@mongo:27017/"
 
 CMD [ "npm", "run","dev" ]
