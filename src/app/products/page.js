@@ -7,7 +7,7 @@ import Footer from '../componements/Footer';
 
 export default async function page({params,searchParams}){
 
-    const itemsByPage = 5;
+    const itemsByPage = 6;
 
     
     // get search text
@@ -38,6 +38,14 @@ export default async function page({params,searchParams}){
     
     let products = await db.collection('products').find(query).sort({ date: 1 }).skip((page-1)*itemsByPage).limit(itemsByPage).toArray();
     let data = await db.collection('site').findOne({});
+    if(!data){
+      data = {
+        mainColor: '#000000',
+        secondColor: '#ffffff',
+        logo: 'default-logo.png',
+        name: 'My shop',
+        images: []
+    }}
     let mainColor = data.mainColor;
     let secondColor = data.secondColor;
 

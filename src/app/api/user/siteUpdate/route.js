@@ -39,9 +39,16 @@ export async function POST(req) {
     if (user.password != data.password) return NextResponse.json({ success: false , message: 'Not authorized wrong password' })
     
     // check if data is valid
-    if (!data.name || !data.logo || !data.images || !data.mainColor || !data.secondColor) return NextResponse.json({ success: false , message: 'Invalid data' })
+    if (!data.name || !data.logo || !data.mainColor || !data.secondColor) return NextResponse.json({ success: false , message: 'Invalid data' })
     // update data
-    await db.collection("site").updateOne({},{$set:{name:data.name,logo:data.logo,images:data.images,mainColor:data.mainColor,secondColor:data.secondColor}})
+    try{
+        let site = await db.collection("site").findOne({})
+        if(!site) await db.collection("site").insertOne({name:data.name,logo:data.logo,images:data.images,mainColor:data.mainColor,secondColor:data.secondColor})
+        else await db.collection("site").updateOne({},{$set:{name:data.name,logo:data.logo,images:data.images,mainColor:data.mainColor,secondColor:data.secondColor}})
+    }catch(e){
+        return NextResponse.json({ success: false , message: 'Error updating data' })
+    }
+    
     return NextResponse.json(
         { success: true , message: 'successfully updated'}
     )

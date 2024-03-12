@@ -9,7 +9,7 @@ import Footer from './componements/Footer';
 export default async function Home() {
 
   let data = await db.collection('site').findOne({});
-  let products = await db.collection('products').find({visible:true}).sort({ date: 1 }).limit(10).toArray();
+  let products = await db.collection('products').find({visible:true}).sort({ date: -1 }).limit(10).toArray();
 
   if(!data){
     data = {

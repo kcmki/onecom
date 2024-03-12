@@ -16,14 +16,13 @@ export default function MainPageProducts({mainColor, secondColor,products}) {
     }
 
 
-
 function ProductCard({product,mainColor}){
 
     return (
         
-        <Link href={`/products/${product.productId}`} className="flex flex-col justify-center items-center w-1/4 max-w-40 small:w-1/2 border-4 rounded-xl m-1" style={{borderColor:mainColor}}>
+        <Link href={`/products/${product.productId}`} className="flex flex-col justify-center items-center w-1/4 max-w-40 small:w-1/2 border-4 rounded-xl m-1 max-h-72 min-h-72 " style={{borderColor:mainColor}}>
             <img src={product.images[0]} alt={product.name} className="w-full rounded-t-lg "/>
-            <div className=" h-20 flex justify-center items-center">
+            <div className=" h-20 flex justify-center items-center h-lvh">
                 <h2 className="text-xl font-bold">{product.name}</h2>
             </div>
             <p className="text-red-600 font-bold rounded">{product.price}</p>

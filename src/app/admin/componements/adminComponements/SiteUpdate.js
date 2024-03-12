@@ -42,6 +42,7 @@ export default function SiteUpdate(){
             if (password === undefined || password === null || password == '') throw new Error('Password not valid');
             else password = hash(password);
             let UploadingData = {name:siteName,logo: logo, images: images, mainColor: mainColor, secondColor: secondColor,password, password}
+            if(UploadingData.images === undefined) UploadingData.images = [];
             let response = await fetch('/api/user/siteUpdate/', {
                 method: 'POST',
                 headers: {

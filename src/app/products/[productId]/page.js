@@ -11,6 +11,14 @@ export default async function page({params}){
     let productId = params.productId;
 
     let data = await db.collection('site').findOne({});
+    if(!data){
+        data = {
+          mainColor: '#000000',
+          secondColor: '#ffffff',
+          logo: 'default-logo.png',
+          name: 'My shop',
+          images: []
+      }}
     let mainColor = data.mainColor;
     let secondColor = data.secondColor;
     let logo = data.logo;

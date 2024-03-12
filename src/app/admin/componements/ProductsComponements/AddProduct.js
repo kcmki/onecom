@@ -31,7 +31,8 @@ export default function AddProduct({setProducts}){
             price: refPrice.current.value,
             Qsizes: Qsizes,
             description: refDescription.current.value,
-            images: images
+            images: images,
+            visible: true
         }
 
         let response = await fetch("/api/products", {
@@ -75,23 +76,23 @@ export default function AddProduct({setProducts}){
 
             <div className="flex small:flex-col justify-between items-center w-10/12"> 
                 <span className="text-black font-bold">Name</span> 
-                <input ref={refName} className="bg-black rounded p-1 m-1 w-8/12 text-white dark:text-black" type="text" placeholder="name" />
+                <input ref={refName} className="bg-black rounded p-1 m-1 w-8/12 text-white " type="text" placeholder="name" />
             </div>
             <div className="flex small:flex-col justify-between items-center w-10/12"> 
                 <span className="text-black font-bold">Price</span> 
-                <input ref={refPrice} className="bg-black rounded p-1 m-1 w-8/12 text-white dark:text-black" type="number" min={1} placeholder="price" />
+                <input ref={refPrice} className="bg-black rounded p-1 m-1 w-8/12 text-white " type="number" min={1} placeholder="price" />
             </div>
             <div className="flex small:flex-col justify-between items-center w-10/12"> 
                 <span className="text-black font-bold">Description</span> 
-                <input ref={refDescription} className="bg-black rounded p-1 m-1 w-8/12 text-white dark:text-black" type="text" placeholder="description"  />
+                <input ref={refDescription} className="bg-black rounded p-1 m-1 w-8/12 text-white " type="text" placeholder="description"  />
             </div>
 
             <div className="flex small:flex-col justify-between small:justify-center flex-wrap items-center w-10/12">
                 <div className="flex small:flex-col justify-between items-center w-full "> 
                     <span className="text-black font-bold">Size Quantity</span>
                     <div className='w-8/12 flex justify-between  m-1'>                    
-                        <input ref={refSize} className="bg-black rounded p-1 w-5/12 text-white dark:text-black" type="text" placeholder="size" />
-                        <input ref={refQuantity} className="bg-black rounded p-1 w-6/12 small:w-4/12 text-white dark:text-black" type="number" min={1} defaultValue={1} placeholder="quantity" />
+                        <input ref={refSize} className="bg-black rounded p-1 w-5/12 text-white " type="text" placeholder="size" />
+                        <input ref={refQuantity} className="bg-black rounded p-1 w-6/12 small:w-4/12 text-white " type="number" min={1} defaultValue={1} placeholder="quantity" />
                     </div> 
                 </div>
                 <div className="flex small:flex-col justify-center items-center w-full ">

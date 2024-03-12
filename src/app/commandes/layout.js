@@ -5,6 +5,14 @@ import db from '/lib/db'
 
 export default async function CommandesLayout({ children }) {
     let data = await db.collection('site').findOne({});
+    if(!data){
+        data = {
+          mainColor: '#000000',
+          secondColor: '#ffffff',
+          logo: 'default-logo.png',
+          name: 'My shop',
+          images: []
+      }}
     let mainColor = data.mainColor;
     let secondColor = data.secondColor;
 
