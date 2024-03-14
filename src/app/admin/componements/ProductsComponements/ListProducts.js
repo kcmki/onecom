@@ -89,7 +89,7 @@ function ProductsCard({product,setSelectedProduct}){
             </div>
             <h2 className="text-black p-2 m-2 font-bold text-xl">{product.name}</h2>
             <p className="text-black p-2 m-2 font-bold text-l">Price : {product.price}</p>
-            <p className="text-black p-2 m-2 font-bold text-l">Description : {product.description}</p>
+            <p className="text-black p-2 m-2 font-bold text-l whitespace-pre-wrap	">Description : {product.description}</p>
             <p className="text-black p-2 m-2 font-bold text-l">Visible : {product.visible ? "Visible" : "Not visible"}</p>
             <div className="grid grid-cols-3 border-2 border-black rounded m-2">
                 {product.Qsizes.map((Qsize,index)=>{

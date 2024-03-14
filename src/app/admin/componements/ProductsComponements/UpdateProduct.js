@@ -134,7 +134,7 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             </div>
             <div className="flex small:flex-col justify-between items-center w-10/12"> 
                 <span className="text-black font-bold">Description</span> 
-                <input ref={refDescription} className="bg-black rounded p-1 m-1 w-8/12 text-white " type="text" placeholder="description"  />
+                <textarea ref={refDescription} className="bg-black rounded p-1 m-1 w-8/12 text-white " type="text" placeholder="description"  />
             </div>
             <div className="flex small:flex-col justify-between items-center w-10/12"> 
                 <span className="text-black font-bold">Visible</span> 

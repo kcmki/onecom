@@ -37,7 +37,7 @@ export default async function page({params}){
                 <ProdSlider images={product.images} secondColor={secondColor}/>
                 <div className='w-full flex justify-center items-center flex-col px-10 border-2 border-black dark:border-[#e5e7eb] m-2 rounded-xl'>
                     <h2 className='text-xl font-bold py-1'>Description</h2>
-                    <p>{product.description}</p>
+                    <p className='whitespace-pre-wrap'>{product.description}</p>
                 </div>
             </div>
 

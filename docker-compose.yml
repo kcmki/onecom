@@ -21,7 +21,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: KCMKI
-
+      EMAIL: test@test.fr
+      PASSWORD: 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
     volumes:
       - ./data:/data/db
     ports:
