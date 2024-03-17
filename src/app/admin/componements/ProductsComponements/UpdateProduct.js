@@ -44,6 +44,12 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
     async function handleChooseUpImg(e){
         let file = e.target.files[0];
         const image = await imageBase64(file);
+        const sizeInBytes = new Blob([image]).size;
+        if(sizeInBytes > 2000000){
+            setMessage("Image too large");
+            return
+        }
+        setMessage("");
         setUpImages((current) =>[...current, image]);
     }
 
@@ -67,6 +73,11 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             body: JSON.stringify(data)
         });
 
+        if(response.status === 413){
+            setMessage('Image too large');
+            setLoading(false)
+            return;
+        }
         let res = await response.json();
         if(res.success){
             setMessage("Product updated successfully");
@@ -74,6 +85,7 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             
         }else{
             setMessage("Product not updated Error : "+res.message);
+            setLoading(false);
             if(res.message === "Not authorized"){
                 setLogged(false);
             }
@@ -117,7 +129,8 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             {setMessage("Size and quantity required");
             return}
         let elem = {size:s,quantity:q}
-        setQsizes([...Qsizes,elem])
+        if(Qsizes === undefined) setQsizes([elem])
+        else setQsizes([...Qsizes,elem])
         setMessage("")
     }
     return (
@@ -154,7 +167,9 @@ export default function UpdateProduct({selectedProduct, setSelectedProduct, prod
             </div>
 
             <div className="grid grid-cols-3 border-2 border-black rounded m-2">
-                {Qsizes.map((Qsize,index)=>{
+                {
+                Qsizes === undefined ? <span className='text-white bg-black rounded'>No sizes</span> :
+                Qsizes.map((Qsize,index)=>{
                     return (
                         <div className="flex justify-center items-center flex-wrap bg-black text-white rounded m-1 p-1 hover:bg-red-600" key={index} onClick={()=>{setQsizes((current)=>{return current.filter((elem)=>{if(elem!=Qsize) return elem})})}}> 
                             <span className="text-white font-bold">{Qsize.size+" "}</span>

@@ -24,6 +24,31 @@ export const imageBase64 = (file) => {
     const data = new Promise((resolve, reject) => {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
-    });
+        });
     return data;
 }
+
+export const compressImage = (file, quality = 0.5) => {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = file;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                canvas.toBlob(
+                    (blob) => resolve(blob),
+                    file.type,
+                    quality
+                );
+            };
+            img.onerror = (error) => reject(error);
+        };
+        reader.onerror = (error) => reject(error);
+    });
+};

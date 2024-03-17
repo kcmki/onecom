@@ -18,9 +18,16 @@ export default function AddProduct({setProducts}){
     const refDescription = useRef();
     const setLogged = useContext(LoggedContext);
     async function handleChooseImg(e){
+
         let file = e.target.files[0];
         const image = await imageBase64(file);
+        const sizeInBytes = new Blob([image]).size;
+        if(sizeInBytes > 2000000){
+            setMessage("Image too large");
+            return
+        }
         setImages([...images, image]);
+        setMessage("");
     }
 
     const startUploading = async ()=>{
@@ -45,6 +52,12 @@ export default function AddProduct({setProducts}){
         });
         if(response.status != 200){
             setMessage("Error : "+response.message);
+            setLoading(false);
+        }
+        if(response.status === 413){
+            setMessage('Image too large');
+            setLoading(false)
+            return;
         }
         let res = await response.json();
         if(res.success){
@@ -125,8 +138,8 @@ export default function AddProduct({setProducts}){
                 {
                     images.map((image, index) => {
                         return (
-                        <div className="w-32 h-32 bg-red-600 rounded m-1 flex justify-center items-center"> 
-                            <img key={index} src={image} alt="product" className="w-32 h-32 rounded hover:w-28 hover:h-28" onClick={()=>{let im = images.filter((img)=>{if(img!=image) return img});setImages(im)}} />
+                        <div className="w-32 h-32 bg-red-600 rounded m-1 flex justify-center items-center" key={index}> 
+                            <img  src={image} alt="product" className="w-32 h-32 rounded hover:w-28 hover:h-28" onClick={()=>{let im = images.filter((img)=>{if(img!=image) return img});setImages(im)}} />
                         </div>
                         )
                     })

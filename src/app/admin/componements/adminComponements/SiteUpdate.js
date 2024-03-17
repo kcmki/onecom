@@ -56,6 +56,11 @@ export default function SiteUpdate(){
                 setUploading(false)
                 return;
             }
+            if(response.status === 413){
+                setMessage('Image too large');
+                setUploading(false)
+                return;
+            }
             let data = await response.json();
             if(data.success){
                 setMessage(data.message);
@@ -64,6 +69,7 @@ export default function SiteUpdate(){
                 throw new Error('Site update failed : ' + data.message);
         }catch(e){
             setMessage(e.message);
+            setUploading(false);
         }
         setUploading(false);
     }

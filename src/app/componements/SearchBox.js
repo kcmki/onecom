@@ -9,7 +9,6 @@ export default async function SearchBox(){
 
     const handleSearch = (e) => {
         let search = document.getElementById('searchInput').value;
-        console.log("search",search)
         e.preventDefault();
         router.push(`/products?search=${search}&page=1`);
         document.getElementById('searchInput').blur()

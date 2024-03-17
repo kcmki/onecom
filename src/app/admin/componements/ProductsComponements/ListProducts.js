@@ -22,7 +22,6 @@ export default function ListProducts({products, setProducts,setSelectedProduct})
             });
             let res = await response.json();
             if(res.success){
-                console.log(res.data);
                 setProducts(res.data);
             }else{
                 if(res.message === "Not authorized"){
@@ -65,7 +64,7 @@ export default function ListProducts({products, setProducts,setSelectedProduct})
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black">{message}</span>
             {
-                
+
                 products.map((product, index) => {
                     if (product === undefined) return;
                     return (
@@ -96,7 +95,7 @@ function ProductsCard({product,setSelectedProduct}){
             <p className="text-black p-2 m-2 font-bold text-l">Visible : {product.visible ? "Visible" : "Not visible"}</p>
             <div className="grid grid-cols-3 border-2 border-black rounded m-2">
                 {
-                product.Qsizes === undefined ? "No sizes" :
+                product.Qsizes === undefined ? <span className='text-white bg-black rounded'>No sizes</span> :
                 product.Qsizes.map((Qsize,index)=>{
                     return (
                         <div className="flex justify-center items-center flex-wrap bg-black text-white rounded m-1 p-1" key={index} > 
