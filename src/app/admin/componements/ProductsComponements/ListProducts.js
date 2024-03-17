@@ -22,6 +22,7 @@ export default function ListProducts({products, setProducts,setSelectedProduct})
             });
             let res = await response.json();
             if(res.success){
+                console.log(res.data);
                 setProducts(res.data);
             }else{
                 if(res.message === "Not authorized"){
@@ -64,6 +65,7 @@ export default function ListProducts({products, setProducts,setSelectedProduct})
             <h2 className="text-black p-2 m-2 font-bold text-xl">List Products</h2>
             <span className="text-black">{message}</span>
             {
+                
                 products.map((product, index) => {
                     if (product === undefined) return;
                     return (
@@ -79,7 +81,8 @@ function ProductsCard({product,setSelectedProduct}){
     return (
         <div className="flex flex-col justify-center items-center w-full m-2 bg-white rounded-xl border-2 border-black " onClick={()=>{setSelectedProduct(product)}}>
             <div className="grid grid-cols-3 m-2">
-                {
+                {   
+                    product.images == undefined ? "No images" :
                     product.images.map((image, index) => {
                         return (
                             <img key={index} src={image} alt="product" className="w-24 h-24 rounded" />
@@ -92,7 +95,9 @@ function ProductsCard({product,setSelectedProduct}){
             <p className="text-black p-2 m-2 font-bold text-l whitespace-pre-wrap	">Description : {product.description}</p>
             <p className="text-black p-2 m-2 font-bold text-l">Visible : {product.visible ? "Visible" : "Not visible"}</p>
             <div className="grid grid-cols-3 border-2 border-black rounded m-2">
-                {product.Qsizes.map((Qsize,index)=>{
+                {
+                product.Qsizes === undefined ? "No sizes" :
+                product.Qsizes.map((Qsize,index)=>{
                     return (
                         <div className="flex justify-center items-center flex-wrap bg-black text-white rounded m-1 p-1" key={index} > 
                             <span className="text-white font-bold">{Qsize.size+" "}</span>
