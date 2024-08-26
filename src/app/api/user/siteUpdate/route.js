@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import db from '/lib/db'
+import { revalidatePath } from 'next/cache'
 
 // endpoint to update site data (has to be admin and logged in)
 
@@ -45,8 +46,8 @@ export async function POST(req) {
         let site = await db.collection("site").findOne({})
         if(!site) await db.collection("site").insertOne({name:data.name,logo:data.logo,images:data.images,mainColor:data.mainColor,secondColor:data.secondColor})
         else await db.collection("site").updateOne({},{$set:{name:data.name,logo:data.logo,images:data.images,mainColor:data.mainColor,secondColor:data.secondColor}})
-        await res.revalidate('/');
-        await res.revalidate('/commandes');
+        revalidatePath('/');
+        revalidatePath('/commandes');
     }catch(e){
         return NextResponse.json({ success: false , message: 'Error updating data' })
     }
