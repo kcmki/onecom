@@ -13,7 +13,7 @@ export default function MainPageProducts({mainColor, secondColor,products}) {
             </div>
         </div>
     )
-    }
+}
 
 
 function ProductCard({product,mainColor}){
